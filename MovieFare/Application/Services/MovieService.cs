@@ -50,8 +50,6 @@ namespace MovieFare.Application.Services
 			// Call the API to get movie details
 			try
 			{
-				// Try to get the movie from cache
-				// Update the line to handle the nullable value properly by using a nullable type for `cachedMovie` and null-coalescing operator.
 				if (_cache.TryGetValue(cacheKey, out List<Movies>? cachedMovie) && cachedMovie != null)
 				{
 					return cachedMovie;
@@ -79,11 +77,9 @@ namespace MovieFare.Application.Services
 			}
 			catch (Exception ex)
 			{
-				// Log the exception
 				_logger.LogError($"Something went wrong in GetMoviesAsync: {ex.Message} & StackTrace : {ex.StackTrace}");
 			}
 
-			// Set in cache with expiration
 			if (lstMovies != null && lstMovies.Count() > 0)
 				_cache.Set(cacheKey, lstMovies, TimeSpan.FromMinutes(_settings.CacheTimeOut));
 
@@ -104,8 +100,6 @@ namespace MovieFare.Application.Services
 
 			try
 			{		
-				// Try to get the movie from cache
-				// Update the line to handle the nullable value properly by using a nullable type for `cachedMovie` and null-coalescing operator.
 				if (_cache.TryGetValue(cacheKey, out MovieDetails? cachedMovie) && cachedMovie != null)
 				{
 					return cachedMovie;
@@ -141,15 +135,12 @@ namespace MovieFare.Application.Services
 			}
 			catch (Exception ex)
 			{
-				// Log the exception
 				_logger.LogError($"Something went wrong in GetMovieDetailsById: {ex.Message} & StackTrace : {ex.StackTrace}");
 				throw;
 			}
 
-			// Set in cache with expiration
 			if(movieDetails != null && !string.IsNullOrEmpty(movieDetails.ID))
 				_cache.Set(cacheKey, movieDetails, TimeSpan.FromMinutes(_settings.CacheTimeOut));
-
 
 			return movieDetails!;
 		}

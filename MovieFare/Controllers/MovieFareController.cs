@@ -27,6 +27,11 @@ namespace MovieFare.Controllers
 			return Ok(await _mediator.Send(new GetAllMoviesQuery()));
 		}
 
+		/// <summary>
+		/// Get the movie details by id.
+		/// </summary>
+		/// <param name="movieId"></param>
+		/// <returns></returns>
 		[HttpGet("GetMovieDetailsById/{movieId}")]
 		public async Task<IActionResult> GetMovieDetailsById(string movieId)
 		{
@@ -40,6 +45,11 @@ namespace MovieFare.Controllers
 			return Ok(movieDetails);
 		}
 
+		/// <summary>
+		/// Get the movie details by id.
+		/// </summary>
+		/// <param name="movieId"></param>
+		/// <returns></returns>
 		[HttpGet("compare/{movieId}")]
 		public async Task<IActionResult> ComparePrice(string movieId)
 		{
