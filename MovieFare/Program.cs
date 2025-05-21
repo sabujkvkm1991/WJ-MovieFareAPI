@@ -90,8 +90,6 @@ builder.Services.AddHttpClient<IMovieService, MovieService>()
 builder.Services.AddScoped<IMovieService, MovieService>(); 
 builder.Services.AddScoped<ITokenService, TokenService>();
 
-ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls13;
-
 builder.Services.AddMemoryCache();
 
 

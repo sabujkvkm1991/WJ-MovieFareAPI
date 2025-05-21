@@ -120,7 +120,6 @@ namespace MovieFare.Application.Services
 
 				if (response.IsSuccessStatusCode)
 				{
-					_logger.LogInformation($"Movie Details by Id {movieId} Fetched at {DateTime.UtcNow.ToString()}");
 					var content = await response.Content.ReadAsStringAsync();
 					var deserializedData = JsonSerializer.Deserialize<MovieDetails>(content, new JsonSerializerOptions
 					{
